@@ -11,8 +11,8 @@ import { Providers } from "@ui-core/providers/providers/providers.provider";
 import "@ui-core/styles/main.css";
 
 export const metadata: Metadata = {
-  title: "Yendes Softwares",
-  description: "Yendes Softwares",
+  title: "Crestalink Test Frontend",
+  description: "Crestalink test frontend",
 };
 
 export default function RootLayout({ children }: Readonly<PropsWithChildren>) {
