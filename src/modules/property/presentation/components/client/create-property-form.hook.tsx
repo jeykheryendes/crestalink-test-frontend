@@ -6,6 +6,8 @@ import { PropertyStatus as PropertyStatusValues } from "@module-property/domain/
 
 import { createPropertyAction } from "@module-property/presentation/actions/create-property.action";
 
+import { toast } from "sonner";
+
 import { useForm } from "react-hook-form";
 
 interface CreatePropertyFormData {
@@ -40,8 +42,9 @@ export const useCreatePropertyForm = () => {
       setValue("city", "");
       setValue("price", 0);
       setValue("status", PropertyStatusValues.AVAILABLE);
+      toast.success("La propiedad se ha creado exitosamente");
     } else {
-      console.error("Error al crear la propiedad:", result.error);
+      toast.error(result.error || "Error al crear la propiedad");
     }
   };
 
