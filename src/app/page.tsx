@@ -9,7 +9,7 @@ export default async function RootPage() {
   const { data: properties } = await getProperties();
 
   return (
-    <main className="bg-background flex h-dvh w-full flex-col items-center justify-center gap-4">
+    <main className="bg-background flex w-full flex-col items-center justify-center gap-4 py-4">
       <CreatePropertyForm />
       {properties.map((property: Property) => (
         <PropertyCard

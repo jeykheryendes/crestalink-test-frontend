@@ -3,7 +3,8 @@
 import { useCreatePropertyForm } from "./create-property-form.hook";
 
 export const CreatePropertyForm = () => {
-  const { register, handleSubmit, onSubmit, errors } = useCreatePropertyForm();
+  const { register, handleSubmit, onSubmit, errors, isSubmitting } =
+    useCreatePropertyForm();
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex gap-4">
@@ -77,6 +78,7 @@ export const CreatePropertyForm = () => {
       <button
         className="py-2 px-4 bg-black rounded-lg text-white cursor-pointer"
         type="submit"
+        disabled={isSubmitting}
       >
         Crear propiedad
       </button>

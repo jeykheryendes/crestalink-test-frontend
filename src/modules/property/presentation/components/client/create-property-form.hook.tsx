@@ -4,6 +4,8 @@ import type { PropertyStatus } from "@module-property/domain/types";
 
 import { PropertyStatus as PropertyStatusValues } from "@module-property/domain/enums/property-status.enum";
 
+import { createPropertyAction } from "@module-property/presentation/actions/create-property.action";
+
 import { useForm } from "react-hook-form";
 
 interface CreatePropertyFormData {
@@ -18,7 +20,7 @@ export const useCreatePropertyForm = () => {
     register,
     handleSubmit,
     setValue,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm<CreatePropertyFormData>({
     mode: "onSubmit",
     defaultValues: {
@@ -30,12 +32,17 @@ export const useCreatePropertyForm = () => {
     reValidateMode: "onChange",
   });
 
-  const onSubmit = (data: CreatePropertyFormData) => {
-    console.log(data);
-    setValue("address", "");
-    setValue("city", "");
-    setValue("price", 0);
-    setValue("status", PropertyStatusValues.AVAILABLE);
+  const onSubmit = async (data: CreatePropertyFormData) => {
+    const result = await createPropertyAction(data);
+
+    if (result.success) {
+      setValue("address", "");
+      setValue("city", "");
+      setValue("price", 0);
+      setValue("status", PropertyStatusValues.AVAILABLE);
+    } else {
+      console.error("Error al crear la propiedad:", result.error);
+    }
   };
 
   return {
@@ -43,5 +50,6 @@ export const useCreatePropertyForm = () => {
     onSubmit,
     register,
     errors,
+    isSubmitting,
   };
 };
