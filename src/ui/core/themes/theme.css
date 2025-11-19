@@ -1,0 +1,10 @@
+@import "../styles/variables.css";
+@import "../styles/light.theme.css";
+@import "../styles/dark.theme.css";
+@import "../styles/custom.theme.css";
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-test: var(--text);
+}

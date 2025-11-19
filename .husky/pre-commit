@@ -1,0 +1,5 @@
+bun format
+bun typecheck
+bun lint
+bun security:scan || true
+bun run build
